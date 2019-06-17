@@ -1,4 +1,4 @@
-# Module 4 Project
+# Module 4 Project: Superhero Classification
 
 ## Business Case
 We are creating a web application for aspiring writers and comic enthusiasts. Our application uses character origin stories to predict whether the character will become a hero or villain. Users can test their characters against our model and use our feedback to enhance their origin stories. This will help writers create deeper plots, stronger characters and overall higher quality content
