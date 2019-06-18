@@ -34,7 +34,7 @@ class WikiParser():
             ind1 += 26
             ind2 = fulltext.find('== Other versions ==',ind1) + 1
             plottext = fulltext[ind1:ind2]
-            plottext = plottext.replace('\n',' ').translate(str.maketrans('','',string.punctuation))
+            plottext = plottext.replace('\n',' ').translate(str.maketrans('',''))
             if len(plottext) > 5:
                 return plottext
             else:
