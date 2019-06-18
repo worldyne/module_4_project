@@ -1,0 +1,3 @@
+[submodule "BERT_keras2"]
+	path = BERT_keras2
+	url = https://github.com/Separius/BERT-keras
