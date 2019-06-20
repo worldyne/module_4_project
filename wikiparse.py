@@ -11,9 +11,16 @@ class WikiParser():
         self.ambiguation = []
     
     def get_plot(self,raw_text):
-        '''accepts a WikipediaPage object, and extracts the plot
-            text(if there is any) and returns it in plain text, with no punctuation.
-            If no plot text exists, return -1.'''
+        '''accepts a WikipediaPage object, and extracts the plot text(if there is any)
+            and returns it in plain text, with no punctuation. If no plot text exists, return -1.
+            
+            Args:
+                raw_text: WikipediaPage
+                    the artiticle in a WikipediaPage format.
+                
+            Return:
+                plottext: string
+                    The plot section of the article in plain text format.'''
         fulltext = raw_text.content
         ind1 = fulltext.find('== Plot ==') + 10
         ind2 = fulltext.find('==',ind1)
@@ -25,18 +32,26 @@ class WikiParser():
             return -1
 
     def get_bio(self,raw_text):
-        '''accepts a WikipediaPage object, and extracts the bio
-            information(if there is any) and returns it in plain text, 
-            with no punctuation. If no bio text exists, return -1.'''
+        '''accepts a WikipediaPage object, and extracts the plot text(if there is any)
+            and returns it in plain text, with no punctuation. If no plot text exists, return -1.
+            
+            Args:
+                raw_text: WikipediaPage
+                    the artiticle in a WikipediaPage format.
+                
+            Return:
+                biotext: string
+                    The publication history and character biography sections of the article in plain
+                    text format.'''
         fulltext = raw_text.content
         ind1 = fulltext.find('== Publication history ==')
         if ind1 != -1:
             ind1 += 26
             ind2 = fulltext.find('== Other versions ==',ind1) + 1
-            plottext = fulltext[ind1:ind2]
-            plottext = plottext.replace('\n',' ').translate(str.maketrans('',''))
-            if len(plottext) > 5:
-                return plottext
+            biotext = fulltext[ind1:ind2]
+            biotext = biotext.replace('\n',' ').translate(str.maketrans('',''))
+            if len(biotext) > 5:
+                return biotext
             else:
                 return -1
         else:
@@ -44,6 +59,17 @@ class WikiParser():
 
 
     def get_category(self,cat):
+        '''searches for a wikipedia category, and returns the first 100 memebers
+        of the category.
+            
+            Args:
+                cat: string
+                The category to be searched. 
+                
+            Return:
+                titles: list
+                    the titles of the 100 category members in the search.'''
+        
         URL = "https://en.wikipedia.org/w/api.php"
 
         TITLE = cat#"Category:Marvel Comics superheroes"
@@ -67,14 +93,25 @@ class WikiParser():
 
 
     def continue_category(self,cat):
+        '''searches for a wikipedia category previously searched, and returns the 
+        next 100 memebers of the category. Requires that the category have been
+        previously searched. 
+            
+            Args:
+                cat: string
+                    The category to be searched. 
+                
+            Return:
+                titles: list
+                    the titles of the next 100 category members in the search.'''
+        
+        
         URL = "https://en.wikipedia.org/w/api.php"
-
-        TITLE = cat
 
         PARAMS = {
             'action': "query",
             'list': 'categorymembers',
-            'cmtitle': TITLE,
+            'cmtitle': cat,
             'cmcontinue': self.cmc,
             'cmlimit': '100',
             'format': "json",
@@ -90,6 +127,22 @@ class WikiParser():
         return titles
 
     def get_all_bios(self,pages,label):
+        '''accepts a list of wikipedia page titles, and searchs for each one.
+            The bio is then extracted from the page in a plaintext format, 
+            and attached to a list.
+            
+            Args:
+                pages: list
+                    list of page titles to be searched. 
+                label: string
+                    label to be applied to each bio.
+                
+            Return:
+                bios: list
+                    list of dictionaries, each containing a bio for a character,
+                    and a label for that bio.'''
+        
+        
         bios = []
         miss = 0
 
@@ -103,7 +156,7 @@ class WikiParser():
                 self.ambiguation.append(page)
             except wikipedia.exceptions.PageError:
                 self.pageerrors.append(page)
-            if i % 10 == 0:
+            if ((i+1) % 10 == 0):
                 print('.',end=" ")
 
         print(" ")
