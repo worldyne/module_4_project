@@ -44,7 +44,7 @@ class WikiParser():
                     The publication history and character biography sections of the article in plain
                     text format.'''
         fulltext = raw_text.content
-        ind1 = fulltext.find('== Publication history ==')
+        ind1 = fulltext.find('== Fictional character biography ==')
         if ind1 != -1:
             ind1 += 26
             ind2 = fulltext.find('== Other versions ==',ind1) + 1
@@ -59,7 +59,7 @@ class WikiParser():
 
 
     def get_category(self,cat):
-        '''searches for a wikipedia category, and returns the first 100 memebers
+        '''searches for a wikipedia category, and returns the first 100 members
         of the category.
             
             Args:
