@@ -20,10 +20,18 @@ Project Outline:
 
 
 ## Data Collection, Exploration and Understanding
+- Scrape origin stories using the Wikipedia API. 
+- Collected over 100 different origin stories from Marvel
 
 ## Data Preparation
+- Hero stories were brought in seperatley from villain stories, 
+- The two dataframes were then merged together to create a master dataframe.
+- Master dataframe was exported as a ``` .json file``` for use on Google Cloud
+- Data added to Google Cloud bucket for collaboration 
 
 ## Modeling
+- Used Google BERT NLP for feature extraction. 
+- Used features from BERT and added them to Random Trees classifier in order to make final classifcations. 
 
 ## Evaluation
 
