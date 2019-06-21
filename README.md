@@ -28,3 +28,5 @@ Project Outline:
 ## Evaluation
 
 ## Deployment
+User Story:
+Jimmy wants to create a new comic book character. He studies origin stories and think he has created the perfect origin for his new character. The character he has created is intended to be a villain and will give the other heroes a run for their money in the final battle. Jimmy wants to make sure his origin story is wicked enough to genuniely produce the villain he has created. This is where Jimmy would plug his origin story into the 'Story' box on our website and with one click of a button, Jimmy will know how well his story stacks up to the pros... and luckily for Jimmy, it was a villain.
