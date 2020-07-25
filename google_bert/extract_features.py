@@ -86,8 +86,8 @@ flags.DEFINE_integer("batch_size", 32, "Batch size for predictions.")
 
 flags.DEFINE_bool("use_tpu", False, "Whether to use TPU or GPU/CPU.")
 
-flags.DEFINE_string("master", None,
-                    "If using a TPU, the address of the master.")
+flags.DEFINE_string("main", None,
+                    "If using a TPU, the address of the main.")
 
 flags.DEFINE_integer(
     "num_tpu_cores", 8,
@@ -445,7 +445,7 @@ def main(_):
 
   is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
   run_config = tf.contrib.tpu.RunConfig(
-      master=FLAGS.master,
+      main=FLAGS.main,
       tpu_config=tf.contrib.tpu.TPUConfig(
           num_shards=FLAGS.num_tpu_cores,
           per_host_input_for_training=is_per_host))
