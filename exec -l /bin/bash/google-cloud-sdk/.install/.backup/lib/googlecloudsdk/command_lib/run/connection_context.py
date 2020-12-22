@@ -203,7 +203,7 @@ class _KubeconfigConnectionContext(_ClusterConnectionContext):
 
     Yields:
       A tuple of (endpoint, ca_certs), where endpoint is the ip address
-      of the GKE master, and ca_certs is the absolute path of a temporary file
+      of the GKE main, and ca_certs is the absolute path of a temporary file
       (lasting the life of the python process) holding the ca_certs to connect
       to the GKE cluster.
     Raises:

@@ -134,7 +134,7 @@ tf.flags.DEFINE_string(
     "specified, we will attempt to automatically detect the GCE project from "
     "metadata.")
 
-tf.flags.DEFINE_string("master", None, "[Optional] TensorFlow master URL.")
+tf.flags.DEFINE_string("main", None, "[Optional] TensorFlow main URL.")
 
 flags.DEFINE_integer(
     "num_tpu_cores", 8,
@@ -1143,7 +1143,7 @@ def main(_):
   is_per_host = tf.contrib.tpu.InputPipelineConfig.PER_HOST_V2
   run_config = tf.contrib.tpu.RunConfig(
       cluster=tpu_cluster_resolver,
-      master=FLAGS.master,
+      main=FLAGS.main,
       model_dir=FLAGS.output_dir,
       save_checkpoints_steps=FLAGS.save_checkpoints_steps,
       tpu_config=tf.contrib.tpu.TPUConfig(
